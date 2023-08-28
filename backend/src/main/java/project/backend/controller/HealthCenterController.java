@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import project.backend.application.dto.HealthCenterDTO;
 import project.backend.domain.model.HealthCenter;
 import project.backend.service.HealthCenterService;
 
@@ -42,9 +43,8 @@ public class HealthCenterController {
 
     @ApiOperation(value = "Criar uma nova unidade de saúde")
     @PostMapping
-    public ResponseEntity<HealthCenter> createHealthCenter(@RequestBody HealthCenter healthCenter) {
-        HealthCenter createdHealthCenter = healthCenterService.createHealthCenter(healthCenter);
-        return ResponseEntity.ok(createdHealthCenter);
+    public HealthCenterDTO createHealthCenter(@RequestBody HealthCenterDTO healthCenterDTO) {
+        return healthCenterService.createHealthCenter(healthCenterDTO);
     }
 
     @ApiOperation(value = "Atualizar unidade de saúde pelo ID")

@@ -4,18 +4,18 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import project.backend.application.mapper.HealthCenterMapper;
 import project.backend.domain.model.HealthCenter;
 import project.backend.domain.repository.HealthCenterRepository;
-
-import javax.validation.ConstraintViolation;
-import javax.validation.ConstraintViolationException;
+import project.backend.application.dto.HealthCenterDTO;
 import javax.validation.Validator;
 import java.util.List;
-import java.util.Set;
+
 
 @Service
 public class HealthCenterService {
     private final HealthCenterRepository healthCenterRepository;
+    private final HealthCenterMapper healthCenterMapper = HealthCenterMapper.INSTANCE;
     private final Validator validator;
 
     @Autowired
@@ -32,12 +32,9 @@ public class HealthCenterService {
         return healthCenterRepository.findById(id).orElse(null);
     }
 
-    public HealthCenter createHealthCenter(HealthCenter healthCenter) {
-        Set<ConstraintViolation<HealthCenter>> violations = validator.validate(healthCenter);
-        if (!violations.isEmpty()) {
-            throw new ConstraintViolationException(violations);
-        }
-        return healthCenterRepository.save(healthCenter);
+    public HealthCenterDTO createHealthCenter(HealthCenterDTO healthCenterDTO) {
+        HealthCenter healthCenter = healthCenterMapper.toModel(healthCenterDTO);
+        return healthCenterMapper.toDTO(healthCenterRepository.save(healthCenter));
     }
 
     public HealthCenter updateHealthCenter(Long id, HealthCenter updatedHealthCenter) {

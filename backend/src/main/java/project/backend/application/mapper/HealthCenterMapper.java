@@ -11,5 +11,5 @@ public interface HealthCenterMapper {
 
     HealthCenterDTO toDTO(HealthCenter healthCenter);
 
-    HealthCenter toEntity(HealthCenterDTO healthCenterDTO);
+    HealthCenter toModel(HealthCenterDTO healthCenterDTO);
 }

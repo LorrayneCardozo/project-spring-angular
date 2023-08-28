@@ -9,11 +9,15 @@ import javax.persistence.*;
 
 
 @Entity
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Patient {
+@Data
+public class Person {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, unique = true)
     @CPF
     private String cpf;
 
@@ -22,4 +26,14 @@ public class Patient {
 
     @Column(nullable = false)
     private String phone;
+
+    @Column(nullable = false)
+    private String username;
+
+    @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
+    private String role;
+
 }
