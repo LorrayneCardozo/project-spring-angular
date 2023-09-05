@@ -11,6 +11,7 @@ import project.backend.service.DoctorService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/doctor")
 @Api(tags = "Doctor", description = "API para operações relacionadas aos médicos")

@@ -1,0 +1,34 @@
+<div class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Preencha os dados do agendamento.</h2>
+        <button
+          type="button"
+          aria-label="Close"
+          (click)="modalRef.close()"
+        >x</button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="date-display" [value]="selectedDateFormatted" readonly>
+        <div class="form-group-inline">
+          <!-- Calendário -->
+          <div class="form-item calendar-item">
+            <app-calendar-navigator (dateChanged)="handleDateChange($event)"></app-calendar-navigator>
+          </div>
+  
+          <!-- Select -->
+          <div class="form-item select-item">
+            <select [(ngModel)]="selectedTime" name="selectedTime">
+              <option value="" disabled selected>Selecione um horário</option>
+              <option *ngFor="let time of availableTimes" [value]="time">{{ time }}</option>
+            </select>
+          </div>
+        
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="createScheduling()">Salvar</button>
+      </div>
+    </div>
+  </div>
+  

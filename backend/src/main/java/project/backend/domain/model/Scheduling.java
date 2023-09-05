@@ -4,6 +4,7 @@ import lombok.Data;
 import project.backend.domain.enums.SchedulingStatus;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
@@ -16,6 +17,10 @@ public class Scheduling {
 
     @Column(nullable = false)
     private LocalTime appointmentTime;
+
+    @Column(nullable = false)
+    private LocalDate appointmentDate;
+
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)

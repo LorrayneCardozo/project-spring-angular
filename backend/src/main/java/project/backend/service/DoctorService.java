@@ -50,7 +50,6 @@ public class DoctorService {
             availability.setDayOfWeek(availabilityDTO.getDayOfWeek());
             availability.setStartTime(availabilityDTO.getStartTime());
             availability.setEndTime(availabilityDTO.getEndTime());
-            availability.setAppointmentDuration(availabilityDTO.getAppointmentDuration());
             availabilities.add(availability);
         }
         doctor.setAvailabilities(availabilities);

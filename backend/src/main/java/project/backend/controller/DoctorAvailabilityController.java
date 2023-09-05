@@ -13,6 +13,7 @@ import java.time.Duration;
 import java.time.LocalTime;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/doctorAvailability")
 @Api(tags = "Doctor Availability", description = "API para operações relacionadas aos horários disponíveis de um médico")
@@ -41,6 +42,12 @@ public class DoctorAvailabilityController {
     @ApiOperation(value = "Buscar horário disponível por ID")
     public DoctorAvailabilityDTO getAvailabilityById(@PathVariable Long id) {
         return doctorAvailabilityService.findById(id);
+    }
+
+    @GetMapping("/doctor/{id_doctor}")
+    @ApiOperation(value = "Buscar horário disponível por médico")
+    public List<DoctorAvailabilityDTO> getDoctorAvailability(@PathVariable Long id_doctor) {
+        return doctorAvailabilityService.getDoctorAvailabilities(id_doctor);
     }
 
     @PutMapping("/{id}")

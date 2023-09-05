@@ -25,6 +25,4 @@ public class DoctorAvailability {
     private LocalTime startTime;
 
     private LocalTime endTime;
-
-    private LocalTime appointmentDuration;
 }

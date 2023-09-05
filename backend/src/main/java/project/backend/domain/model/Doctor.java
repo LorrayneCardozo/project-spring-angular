@@ -26,6 +26,9 @@ public class Doctor {
     @CPF
     private String cpf;
 
+    @Column(nullable = false, unique = true)
+    private String crm;
+
     @Column(nullable = false)
     private String name;
 

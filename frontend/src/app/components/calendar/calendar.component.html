@@ -1,0 +1,10 @@
+<div>
+  <div>
+    <button (click)="navigateWeek(-1)">Semana Anterior</button> &nbsp;&nbsp;
+    <button (click)="navigateWeek(1)">Próxima Semana</button>
+  </div>
+  
+  <br>
+  <daypilot-calendar [config]="configWeek" [events]="events" #calendar></daypilot-calendar>
+  <br>
+</div>

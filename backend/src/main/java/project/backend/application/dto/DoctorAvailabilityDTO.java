@@ -18,6 +18,5 @@ public class DoctorAvailabilityDTO {
     private DayOfWeek dayOfWeek;
     private LocalTime startTime;
     private LocalTime endTime;
-    private LocalTime appointmentDuration;
     private Doctor doctor;
 }

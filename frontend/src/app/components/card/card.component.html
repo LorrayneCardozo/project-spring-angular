@@ -1,0 +1,26 @@
+<div class="card">
+    <div class="card-header">
+        <i class="fa fa-pencil edit-icon" (click)="edit(doctorData.id)" *ngIf="role === 'ADMIN'"></i>
+        <i class="fa fa-trash delete-icon" (click)="delete()" *ngIf="role === 'ADMIN'"></i>
+    </div>
+    
+    <img src="../../../assets/user.jpg" alt="Foto">
+    
+    <div class="card-content">
+        <h2>{{ doctorData.name }}</h2>
+        <div class="info-group">
+            <div class="info-left">
+                <p><b>Telefone:</b> {{ doctorData.phone }}</p>
+                <!-- <p><b>CPF:</b> {{ doctorData.cpf }}</p> -->
+                <p><b>CRM:</b> {{ doctorData.crm }}</p>
+            </div>
+            <div class="info-right">
+                <p><b>Especialidade:</b> {{ specialty }}</p>
+                <p><b>Unidade de Saúde:</b> {{ doctorData.healthCenter.name }}</p>
+            </div>
+        </div>
+    </div>
+    <div class="calendar-icon" (click)="openModal()">
+        <i class="fas fa-calendar-alt"></i> Agendar
+    </div>
+</div>

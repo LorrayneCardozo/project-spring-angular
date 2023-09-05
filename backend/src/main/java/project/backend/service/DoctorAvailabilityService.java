@@ -34,6 +34,14 @@ public class DoctorAvailabilityService {
                 .map(doctorAvailabilityMapper::toDTO)
                 .collect(Collectors.toList());
     }
+
+    public List<DoctorAvailabilityDTO> getDoctorAvailabilities(Long doctorId) {
+        return doctorAvailabilityRepository.findByDoctor_Id(doctorId)
+                .stream()
+                .map(doctorAvailabilityMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
     public DoctorAvailability createDoctorAvailability(Long doctorId, DoctorAvailabilityDTO request) {
         Doctor doctor = doctorRepository.findById(doctorId).orElseThrow(() -> new EntityNotFoundException("Doctor not found"));
 
@@ -41,7 +49,6 @@ public class DoctorAvailabilityService {
         availability.setDayOfWeek(request.getDayOfWeek());
         availability.setStartTime(request.getStartTime());
         availability.setEndTime(request.getEndTime());
-        availability.setAppointmentDuration(request.getAppointmentDuration());
 
         availability.setDoctor(doctor);
         doctor.getAvailabilities().add(availability);

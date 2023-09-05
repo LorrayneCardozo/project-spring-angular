@@ -1,0 +1,30 @@
+<ng-container *ngIf="showSidebar">
+    <div class="sidebar">
+        <div class="identification-content">
+            <h1><b>{{ name }}</b></h1>
+            <p><b>
+                {{ role === 'USER' ? 'Paciente' : role === 'ADMIN' ? 'Administrador' : '' }}</b>
+            </p>
+        </div>
+        <hr>
+        <a routerLink="/doctor" routerLinkActive="active">
+            <i class="fa fa-stethoscope"></i>
+            Médicos
+        </a>
+        <a routerLink="/health-center" routerLinkActive="active">
+            <i class="fas fa-medkit"></i>
+            Unidades de Saúde
+        </a>
+        <a routerLink="/scheduling" routerLinkActive="active" *ngIf="role === 'USER'">
+            <i class="fa fa-calendar"></i>
+            Agendamentos
+        </a>
+        <a routerLink="/scheduling-admin" routerLinkActive="active" *ngIf="role === 'ADMIN'">
+            <i class="fa fa-calendar"></i>
+            Agendamentos
+        </a>
+        <a routerLink="/login" class="logout-link" (click)="logout()">
+            <mat-icon class="mat-align-icon" title="Sair">exit_to_app</mat-icon>
+        </a>
+    </div>
+</ng-container>

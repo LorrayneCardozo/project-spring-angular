@@ -1,0 +1,15 @@
+<div class="login-form">
+    <h1>Login</h1>
+    <hr>
+    <form>
+        <div>
+            <label>Username:</label>
+            <input [(ngModel)]="username" name="username">
+        </div>
+        <div>
+            <label>Senha:</label>
+            <input [(ngModel)]="password" name="password" type="password">
+        </div>
+    </form>
+    <button (click)="login()">Confirmar</button>
+</div>

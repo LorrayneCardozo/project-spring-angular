@@ -21,6 +21,7 @@ public class DoctorDTO {
     private Long id;
     @CPF
     private String cpf;
+    private String crm;
     private String name;
     @Enumerated(EnumType.STRING)
     private SpecialtyType specialty;

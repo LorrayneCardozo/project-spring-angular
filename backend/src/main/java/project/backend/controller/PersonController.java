@@ -11,6 +11,7 @@ import project.backend.service.PersonService;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/person")
 @Api(tags = "Person", description = "API para operações relacionadas aos usuários")
@@ -58,6 +59,17 @@ public class PersonController {
     @GetMapping("/{id}")
     public ResponseEntity<Person> getPersonById(@PathVariable Long id) {
         Person person = personService.getPersonById(id);
+        if (person != null) {
+            return ResponseEntity.ok(person);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @ApiOperation(value = "Buscar uma Pessoa pelo Username")
+    @GetMapping("/user/{username}")
+    public ResponseEntity<Person> getPersonById(@PathVariable String username) {
+        Person person = personService.getPersonByUsername(username);
         if (person != null) {
             return ResponseEntity.ok(person);
         } else {

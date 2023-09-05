@@ -1,0 +1,68 @@
+<div class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title" id="exampleModalLabel">Preencha os dados do(a) médico(a).</h2>
+        <button
+          type="button"
+          aria-label="Close"
+          (click)="modalRef.close()"
+        >x</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group-inline">
+          <div class="form-item">
+            <label for="name">Nome:</label>
+            <input [(ngModel)]="name"/>
+          </div>
+          <div class="form-item">
+            <label>CRM:</label>
+            <input [(ngModel)]="crm">
+          </div>
+        </div>
+        <div class="form-group form-group-inline">
+          <div class="form-item">
+            <label for="cpf">CPF:</label>
+            <input [(ngModel)]="cpf" />
+          </div>
+          <div class="form-item">
+            <label for="phone">Telefone:</label>
+            <input type="text" id="phone" class="form-control" [(ngModel)]="phone" />
+          </div>
+        </div>
+        <div class="form-group form-group-inline">
+          <div class="form-item">
+            <label for="specialty">Especialidade:</label>
+            <select id="specialty" class="form-control" [(ngModel)]="selectedSpecialty">
+                <option *ngFor="let specialty of specialtiesEnum | keyvalue" [value]="specialty.key">{{ specialty.value }}</option>
+            </select>
+          </div>
+          <div class="form-item">
+            <label for="healthUnit">Unidade de Saúde:</label>
+            <select id="healthUnit" class="form-control" [(ngModel)]="selectedHealthCenter">
+              <option *ngFor="let healthCenter of healthCenterData" [value]="healthCenter.id">{{ healthCenter.name }}</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Disponibilidade:</label>
+          <table>
+            <tr>
+              <th>Dia da Semana</th>
+              <th>Horário de Início</th>
+              <th>Horário de Fim</th>
+            </tr>
+            <tr *ngFor="let day of daysOfWeek | keyvalue">
+              <td>{{ day.value }}</td>
+              <td><input class="register-time" type="time" [(ngModel)]="getAvailability(day.key).startTime"></td>
+              <td><input class="register-time" type="time" [(ngModel)]="getAvailability(day.key).endTime"></td>
+            </tr>            
+          </table>
+        </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" (click)="saveDoctor()">Salvar</button>
+      </div>
+    </div>
+  </div>
+  

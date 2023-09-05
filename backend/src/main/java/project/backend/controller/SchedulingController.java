@@ -7,10 +7,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import project.backend.application.dto.SchedulingDTO;
+import project.backend.domain.model.Doctor;
+import project.backend.domain.model.Person;
 import project.backend.service.SchedulingService;
 
+import java.time.LocalDate;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/scheduling")
 @Api(tags = "Scheduling", description = "API para operações relacionadas aos agendamentos de consultas")
@@ -26,6 +30,28 @@ public class SchedulingController {
     @ApiOperation(value = "Listar todos os agendamentos cadastrados")
     public List<SchedulingDTO> findAll(){
         return schedulingService.findAll();
+    }
+
+    @GetMapping("/person/{person}")
+    @ApiOperation(value = "Listar todos os agendamentos de um paciente")
+    public List<SchedulingDTO> findByPerson(Person person){
+        return schedulingService.findByPerson(person);
+    }
+
+    @GetMapping("/doctor/{doctor}")
+    @ApiOperation(value = "Listar todos os agendamentos de um médico")
+    public List<SchedulingDTO> findByDoctor(Doctor doctor){
+        return schedulingService.findByDoctor(doctor);
+    }
+
+    @GetMapping("/person-doctor-date")
+    @ApiOperation(value = "Lista agendamentos de um paciente ou médico em um determinado dia")
+    public List<SchedulingDTO> findByPersonOrDoctorAndDate(
+            @RequestParam(name = "idPerson", required = false) Person person,
+            @RequestParam(name = "idDoctor", required = false) Doctor doctor,
+            @RequestParam(name = "date") LocalDate date
+    ) {
+        return schedulingService.findByPersonOrDoctorAndDate(person, doctor, date);
     }
 
     @PostMapping

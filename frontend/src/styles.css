@@ -1,0 +1,74 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import '~@fortawesome/fontawesome-free/css/all.css';
+@import 'ngx-toastr/toastr';
+
+@font-face {
+    font-family: 'FontAwesome';
+    font-style: normal;
+    font-weight: 900;
+    font-display: block;
+    src: url('/assets/webfonts/fa-solid-900.woff2') format('woff2');
+  }
+  
+body {
+    width: 90%;
+    height: 100%;
+    background-color: #E6E6E6;
+    font-family: Arial;
+    color: #666666;
+}
+
+button {
+    background: linear-gradient(to right, #0f5567, #137289);
+    background-color: #0f5567;
+    color: #fff;
+    font-family: Arial;
+    font-size: 14px;
+    font-weight: 800;
+    font-style: normal;
+    text-decoration: none;
+    padding: 12px 15px;
+    border: 0px solid #000;
+    border-radius: 14px;
+    display: inline-block;
+    margin-top: 15px;
+    transition: color 0.3s;
+    cursor: pointer; 
+}
+
+button:hover {
+    background: linear-gradient(to right, #52727f, #538799);
+    background-color: #52727f;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+input {
+    border-width: 2px;
+    border-color: #cccccc;
+    border-style: solid;
+    font-size: 14px;
+    padding: 7px;
+    border-radius: 6px;
+    color: #423d42;
+    width: 100%; 
+}
+
+input:focus {
+    outline: none;
+}
+
+select {
+    border-width: 2px;
+    border-color: #cccccc;
+    border-style: solid;
+    font-size: 14px;
+    padding: 7px;
+    border-radius: 6px;
+    color: #423d42;
+    width: 100%; 
+}

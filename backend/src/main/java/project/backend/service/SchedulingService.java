@@ -6,11 +6,13 @@ import org.springframework.stereotype.Service;
 import project.backend.application.dto.SchedulingDTO;
 import project.backend.application.mapper.SchedulingMapper;
 import project.backend.domain.model.Doctor;
+import project.backend.domain.model.Person;
 import project.backend.domain.model.Scheduling;
 import project.backend.domain.repository.DoctorRepository;
 import project.backend.domain.repository.SchedulingRepository;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,13 +38,35 @@ public class SchedulingService {
                 .map(schedulingMapper::toDTO)
                 .collect(Collectors.toList());
     }
+
+    public List<SchedulingDTO> findByPerson(Person person) {
+        return schedulingRepository.findByPerson(person)
+                .stream()
+                .map(schedulingMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<SchedulingDTO> findByDoctor(Doctor doctor) {
+        return schedulingRepository.findByDoctor(doctor)
+                .stream()
+                .map(schedulingMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    public List<SchedulingDTO> findByPersonOrDoctorAndDate(Person person, Doctor doctor, LocalDate date) {
+        return schedulingRepository.findByPersonOrDoctorAndDate(person, doctor, date)
+                .stream()
+                .map(schedulingMapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
     @Transactional
     public SchedulingDTO createScheduling(SchedulingDTO schedulingDTO) {
         Scheduling scheduling = schedulingMapper.toModel(schedulingDTO);
 
-        if (isConflict(scheduling)) {
-            throw new IllegalStateException("Conflito de agendamento: o médico já tem um agendamento para esse horário.");
-        }
+//        if (isConflict(scheduling)) {
+//            throw new IllegalStateException("Conflito de agendamento: o médico já tem um agendamento para esse horário.");
+//        }
 
         return schedulingMapper.toDTO(schedulingRepository.save(scheduling));
     }
@@ -62,9 +86,9 @@ public class SchedulingService {
         Scheduling updatedScheduling = schedulingMapper.toModel(updatedSchedulingDTO);
         BeanUtils.copyProperties(updatedScheduling, existingScheduling, "id");
 
-        if (isConflict(existingScheduling)) {
-            throw new IllegalStateException("Conflito de agendamento: o médico já tem um agendamento para esse horário.");
-        }
+//        if (isConflict(existingScheduling)) {
+//            throw new IllegalStateException("Conflito de agendamento: o médico já tem um agendamento para esse horário.");
+//        }
 
         return schedulingMapper.toDTO(schedulingRepository.save(existingScheduling));
     }
@@ -83,7 +107,8 @@ public class SchedulingService {
 
         List<Scheduling> existingSchedulings = schedulingRepository.findByDoctorAndAppointmentTime(
                 doctor,
-                newScheduling.getAppointmentTime()
+                newScheduling.getAppointmentTime(),
+                newScheduling.getAppointmentDate()
         );
         if(existingSchedulings.get(0).getId() == newScheduling.getId())
             return false;

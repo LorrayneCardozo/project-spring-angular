@@ -1,0 +1,19 @@
+<button (click)="create()" *ngIf="role === 'ADMIN'">Cadastrar</button>
+<div class="health-center-list">
+  <div
+    *ngFor="let healthCenter of healthCenters"
+    class="health-center-item"
+  >
+    <div class="item-header">
+      <i class="fa fa-pencil edit-icon" (click)="edit(healthCenter.id)" *ngIf="role === 'ADMIN'"></i>
+      <i class="fa fa-trash delete-icon" (click)="delete(healthCenter.id)" *ngIf="role === 'ADMIN'"></i>
+    </div>
+    <div class="health-center-icon">
+      <i class="fas fa-hospital"></i>
+    </div>
+    <h3>{{ healthCenter.name }}</h3>
+    <p class="address">{{ healthCenter.address }}</p>
+    <p class="phone">{{ healthCenter.phone }}</p>
+    <p class="view-doctors" (click)="redirectToDoctorsPage(healthCenter.id)">Ver Médicos</p>
+  </div>
+</div>

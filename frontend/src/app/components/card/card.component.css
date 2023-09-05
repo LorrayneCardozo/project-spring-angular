@@ -1,0 +1,95 @@
+.card {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px; 
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover{
+    transform: translateY(-5px);
+}
+  
+.card img {
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+}
+  
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+h2 {
+    margin: 0 0 3 0; 
+}
+  
+.info-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-right: 80px;
+}
+
+.info-left,
+.info-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+
+.info-right {
+    align-self: center; 
+    margin-right: 40px; 
+}
+
+.info-left p,
+.info-right p {
+    margin: 0;
+}
+
+.calendar-icon {
+    margin-top: auto;
+    transition: color 0.3s;
+    cursor: pointer; 
+}
+
+.calendar-icon:hover {
+    color: #808080;
+}
+
+.card {
+    position: relative;
+}
+
+.card-header {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.delete-icon {
+    margin: 20px;
+    transition: color 0.3s;
+    cursor: pointer; 
+}
+
+.delete-icon:hover {
+    color: #808080;
+}
+
+.edit-icon {
+  transition: color 0.3s;
+  cursor: pointer; 
+}
+
+.edit-icon:hover {
+  color: #808080;
+}

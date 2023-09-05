@@ -40,6 +40,9 @@ public class PersonService {
         return personRepository.findById(id).orElse(null);
     }
 
+    public Person getPersonByUsername(String username) {
+        return personRepository.findByUsername(username);
+    }
     @Transactional
     public Person updatePerson(Long id, Person updatedPerson) {
         Person existingPerson = personRepository.findById(id).orElse(null);
@@ -69,4 +72,5 @@ public class PersonService {
         }
         return false;
     }
+
 }

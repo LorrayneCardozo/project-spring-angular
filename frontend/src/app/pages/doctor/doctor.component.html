@@ -1,0 +1,25 @@
+<div class="space">
+   <button (click)="openModal()" *ngIf="role === 'ADMIN'">Cadastrar</button>
+   <br /><br />
+
+   <div class="form-group form-group-inline">
+      <div class="form-item">
+         <label for="healthCenterSelect">Escolha uma Unidade de Saúde:</label>
+         <select id="healthCenterSelect" [(ngModel)]="healthCenterId" (change)="selectHealthCenter()">
+           <option value="">Todos</option>
+           <option *ngFor="let center of healthCenters" [value]="center.id">{{ center.name }}</option>
+         </select>
+       </div>
+     
+       <div class="form-item">
+         <label for="specialtySelect">Escolha uma Especialidade</label>
+         <select id="specialtySelect" [(ngModel)]="specialty" (change)="selectSpecialty()">
+           <option value="">Todas</option>
+           <option *ngFor="let specialty of specialties | keyvalue" [value]="specialty.key">{{ specialty.value }}</option>
+         </select>
+       </div>
+   </div>
+ 
+   <app-card *ngFor="let doctor of filteredDoctors" [doctorData]="doctor" (clickIconEvent)="deleteDoctor($event)"></app-card>
+</div>
+ 

@@ -1,0 +1,19 @@
+.space {
+    margin-left: 300px;
+}
+
+.form-group {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+.form-group-inline {
+    display: flex;
+    gap: 35px;
+    flex-direction: row;
+}
+
+.form-item {
+    flex: 1;
+}
