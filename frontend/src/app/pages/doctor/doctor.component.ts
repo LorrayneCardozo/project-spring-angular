@@ -38,7 +38,7 @@ export class DoctorComponent {
 
   ngOnInit(): void {
     this.authService.getUserAuthenticated().subscribe((user: any) => {
-      this.role = user.role;
+      this.role = user?.role;
     });
 
     this.healthCenterId = '';

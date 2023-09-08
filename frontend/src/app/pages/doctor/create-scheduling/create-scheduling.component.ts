@@ -59,32 +59,26 @@ export class CreateSchedulingComponent implements OnInit {
     if(availability == null || availability?.startTime == null) {
       this.availableTimes = [];
     }  else {
+      this.availableTimes = [];
       const startTime = availability?.startTime;
       const appointmentDuration = "01:00";
       const durationParts = appointmentDuration.split(':');
       const durationInMinutes = parseInt(durationParts[0]) * 60 + parseInt(durationParts[1]);
 
-      // Converta a hora de início em minutos para facilitar os cálculos
       const startTimeParts = startTime.split(':');
       const startTimeInMinutes = parseInt(startTimeParts[0]) * 60 + parseInt(startTimeParts[1]);
 
-      // Obtenha a hora de término
       const endTimeParts = availability?.endTime.split(':');
       const endTimeInMinutes = parseInt(endTimeParts[0]) * 60 + parseInt(endTimeParts[1]);
 
-      // Inicialize o horário atual com a hora de início
       let currentTimeInMinutes = startTimeInMinutes;
 
-      // Enquanto o horário atual for menor que a hora de término, adicione à lista de horários disponíveis
       while (currentTimeInMinutes + durationInMinutes <= endTimeInMinutes) {
-        // Converta o horário de volta para o formato HH:mm
         const hours = Math.floor(currentTimeInMinutes / 60);
         const minutes = currentTimeInMinutes % 60;
         const formattedTime = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
         
         this.availableTimes.push(formattedTime);
-
-        // Avance para o próximo intervalo de consulta
         currentTimeInMinutes += durationInMinutes;
       }
       this.availableTimes = this.availableTimes.filter(time => !this.unavailable.includes(time));
@@ -102,7 +96,7 @@ export class CreateSchedulingComponent implements OnInit {
 
     const listUnavailable: string[] = [];
     this.schedulingSevice.findByPersonOrDoctorAndDate(this.idPatient, this.data, this.selectedDate.toString("yyyy-MM-dd")).subscribe((response: any) => {
-
+      
       for (const unavailable of response) {
         listUnavailable.push(unavailable?.appointmentTime.substring(0, 5));
       }

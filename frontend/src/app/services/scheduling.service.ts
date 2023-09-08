@@ -29,11 +29,11 @@ export class SchedulingService {
 
   findByPersonOrDoctorAndDate(idPerson: number, idDoctor: number, date: string): Observable<any> {
     const params = new HttpParams()
-      .set('idPerson', idPerson.toString())
-      .set('idDoctor', idDoctor.toString())
+      .set('idPerson', idPerson)
+      .set('idDoctor', idDoctor)
       .set('date', date);
 
-    return this.http.get(`${this.apiUrl}/scheduling`, { params });
+    return this.http.get(`${this.apiUrl}/scheduling/person-doctor-date`, { params });
   }
 
   create(data: any): Observable<any> {

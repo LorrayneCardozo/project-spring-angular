@@ -41,8 +41,8 @@ export class SchedulingAdminComponent implements OnInit {
   }
 
   formattedDate(dateString: string) {
-    const date = new Date(dateString);
-    return date.toLocaleString('pt-BR').slice(0, 10);
+    const [year, month, day] = dateString.split('-');
+    return `${day}/${month}/${year}`;
   }
 
   formattedTime(time: string) {

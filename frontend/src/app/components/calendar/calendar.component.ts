@@ -13,12 +13,11 @@ export class CalendarComponent implements OnInit {
   constructor() {
   }
 
-  //events: DayPilot.EventData[] = [];
   date = DayPilot.Date.today();
 
   configWeek: any = {
     viewType: "Week", 
-    startDate: DayPilot.Date.today().firstDayOfMonth(), 
+    startDate: DayPilot.Date.today().firstDayOfWeek(),
     days: DayPilot.Date.today().daysInMonth(),
     locale: "pt-br",
   };
@@ -29,9 +28,6 @@ export class CalendarComponent implements OnInit {
   }
 
   loadEvents(): void {
-    // this.events = [
-    //   {
-    //     id: "1",
     //     text: "Evento 1",
     //     start: DayPilot.Date.today().addDays(1),
     //     end: DayPilot.Date.today().addDays(2),

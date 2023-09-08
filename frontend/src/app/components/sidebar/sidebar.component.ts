@@ -25,22 +25,10 @@ export class SidebarComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.getUserAuthenticated().subscribe((user: any) => {
-      this.name = user.name;
-      this.role = user.role;
+      this.name = user?.name;
+      this.role = user?.role;
       this.showSidebar = true;
     });
-    // this.authService.isAuthenticated().pipe(
-    //   filter(isAuthenticated => isAuthenticated),
-    //   switchMap(() => this.authService.getUsernameAuthenticated()),
-    //   switchMap(username => {
-    //     this.username = username;
-    //     return this.personService.getUser(username);
-    //   })
-    // ).subscribe((response: any) => {
-    //   this.name = response?.name;
-    //   this.role = response?.role;
-    //   this.showSidebar = true;
-    // });
   }
 
   logout(): void {

@@ -49,8 +49,9 @@ public class SchedulingController {
     public List<SchedulingDTO> findByPersonOrDoctorAndDate(
             @RequestParam(name = "idPerson", required = false) Person person,
             @RequestParam(name = "idDoctor", required = false) Doctor doctor,
-            @RequestParam(name = "date") LocalDate date
+            @RequestParam(name = "date") String dateString
     ) {
+        LocalDate date = LocalDate.parse(dateString);
         return schedulingService.findByPersonOrDoctorAndDate(person, doctor, date);
     }
 
